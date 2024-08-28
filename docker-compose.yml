@@ -1,0 +1,37 @@
+version: '2'
+services:
+  express:
+    build: .
+    environment:
+     - DB_1_PORT_27017_TCP_ADDR=mongodb
+     - LDAP_URL=${LDAP_URL}
+     - SEARCH_FILTER=${SEARCH_FILTER}
+     - BASE_DN_LIST=${BASE_DN_LIST}
+     - UPGRADE_TOOL_URL=${UPGRADE_TOOL_URL}
+     - OQS_EMAIL_ADDRESS=${OQS_EMAIL_ADDRESS}
+     - DTT_EMAIL_ADDRESS=${DTT_EMAIL_ADDRESS}
+     - DTT_EMAIL_PASSWORD=${DTT_EMAIL_PASSWORD}
+     - TEAM_EMAIL=${TEAM_EMAIL}
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+      - ldap
+    volumes:
+     - ./:/usr/src/app
+     - /usr/src/app/node_modules
+
+  mongodb:
+    image: armdocker.seli.gic.ericsson.se/dockerhub-ericsson-remote/mongo:4.0.14
+    ports:
+      - "27017:27017"
+    volumes:
+    - mongodb_data:/data/db
+    - mongodb_logs:/var/log/mongodb
+
+  ldap:
+    image: armdocker.seli.gic.ericsson.se/dockerhub-ericsson-remote/osixia/openldap:1.2.2
+
+volumes:
+ mongodb_data:
+ mongodb_logs:

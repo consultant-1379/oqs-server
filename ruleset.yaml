@@ -1,0 +1,20 @@
+docker:
+  registry: armdocker.rnd.ericsson.se/proj-openstack_queuing_solution
+ruleset:
+  - docker:
+      env:
+        - DOCKER_IMAGE_NAME: ${DOCKER_REGISTRY}/oqs_server
+  - helm:
+      env:
+        - HELM_DESTINATION_FOLDER: 'helm-target'
+        - HELM_IMAGE_TAG_VALUES: image.tag
+        - HELM_REPO: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-helm-dev-generic-local/cd/sandbox/oqs
+        - HELM_REPO_API_TOKEN: AKCp5Zkxbnwu5eezdN5AaY7SbZUx1rwEPfdohB9mJ38Zt6BUap4H7e8smvxCGz6JGpWSWH3kJ
+        - HELM_VALUES: >-
+            image:repository=armdocker.rnd.ericsson.se/proj-openstack_queuing_solution/oqs_server
+            image:tag=$(project::get_version ${RELEASE:-})
+  - adp.artifacts:
+      env:
+        - CHART_NAME: oqs-server
+        - CHART_VERSION: $(project::get_version ${RELEASE:-})
+        - CHART_REPO: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-helm-dev-generic-local/cd/sandbox/oqs/oqs-server

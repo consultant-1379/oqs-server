@@ -1,0 +1,20 @@
+FROM armdocker.seli.gic.ericsson.se/dockerhub-ericsson-remote/node:14.17.0-alpine
+
+# Create a directory where our app will be placed
+RUN mkdir -p /usr/src/app
+
+# Change directory so that our commands run inside this new directory
+WORKDIR /usr/src/app
+
+# Copy dependency definitions
+COPY . /usr/src/app
+
+# Install dependencies
+RUN npm install \
+&& npm cache clean --force
+
+# Expose the port the app runs in
+EXPOSE 3000
+
+# Serve the App
+CMD ["npm", "start"]

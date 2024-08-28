@@ -1,0 +1,73 @@
+{
+  "name": "express-server",
+  "version": "0.0.0",
+  "private": true,
+  "nyc": {
+    "check-coverage": true,
+    "per-file": false,
+    "statements": 94.89,
+    "branches": 89.34,
+    "functions": 94.16,
+    "lines": 95.24,
+    "include": ["**/modules/**/*.js"],
+    "exclude": ["**/modules/**/*.test.js"],
+    "reporter": [
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "cache": true,
+    "all": true
+  },
+  "scripts": {
+    "test": "mocha **/tests/*.test.js --reporter mocha-multi-reporters --reporter-options configFile=config/mocha-config.json --exit",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "acl": "0.4.11",
+    "body-parser": "1.20.0",
+    "chalk": "4.1.2",
+    "checkenv": "1.2.2",
+    "connect-mongo": "2.0.1",
+    "cors": "2.8.4",
+    "deep-object-diff-mod": "1.0.4",
+    "express": "4.14.0",
+    "express-session": "1.15.6",
+    "generate-password": "1.7.0",
+    "glob": "8.0.3",
+    "lodash": "4.17.21",
+    "lusca": "1.7.0",
+    "mongoose": "5.2.10",
+    "mongo-mask": "1.1.0",
+    "mongoose-immutable": "0.0.2",
+    "mongoose-unique-validator": "2.0.1",
+    "node-cron": "3.0.1",
+    "nodemailer": "6.7.8",
+    "owasp-password-strength-test": "1.3.0",
+    "passport": "0.6.0",
+    "passport-ldapauth": "2.1.4",
+    "request": "2.88.2",
+    "request-promise": "4.2.6",
+    "validator": "13.7.0",
+    "winston": "2.4.0"
+  },
+  "devDependencies": {
+    "chai": "4.3.6",
+    "chai-http": "4.3.0",
+    "eslint": "4.15.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-mocha": "4.11.0",
+    "gulp": "3.9.1",
+    "ldapjs": "1.0.2",
+    "mocha": "5.0.1",
+    "mocha-allure-reporter": "1.4.0",
+    "mocha-multi-reporters": "1.1.7",
+    "run-sequence": "2.2.1",
+    "should": "13.2.1",
+    "sinon": "6.0.1",
+    "sinon-mongoose": "2.2.1",
+    "superagent-defaults": "0.1.14",
+    "supertest": "3.0.0"
+  }
+}
